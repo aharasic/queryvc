@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# queryvc
-=======
-
 # Query VC
 
 **Query VC** is a Streamlit-based application that allows users to interact with a Crunchbase Startups Investments dataset. Users can ask questions in natural language, which are then converted into SQL queries to retrieve relevant data from the dataset. The results are processed and returned in a readable format.
@@ -90,4 +86,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Enjoy exploring Crunchbase data with Query VC!
->>>>>>> cd12058 (Initial commit)
