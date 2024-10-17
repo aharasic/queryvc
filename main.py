@@ -15,14 +15,6 @@ def main():
             
     csv_file = "csv/crunchbase.csv"
 
-    if "messages" not in st.session_state.keys():  # Initialize the chat messages history
-        st.session_state.messages = [
-            {
-                "role": "assistant",
-                "content": "Ask me a question about Crunchbase Startups Investments!",
-            }]
-
-    # Add a sidebar
     with st.sidebar:
         
         f_options = [
@@ -42,8 +34,6 @@ def main():
             ]
 
             selected_model = st.radio("Select a Model:", [option["label"] for option in local_options], index=1)
-
-            # Now you can access the selected model
             model = next((option["value"] for option in local_options if option["label"] == selected_model), None)
         
         elif framework == 'bedrock': 
@@ -53,8 +43,6 @@ def main():
             ]
 
             selected_model = st.radio("Select a Model:", [option["label"] for option in bedrock_options], index=1)
-
-            # Now you can access the selected model
             model = next((option["value"] for option in bedrock_options if option["label"] == selected_model), None)
 
         elif framework == 'openai':
@@ -63,28 +51,14 @@ def main():
             ]
 
             selected_model = st.radio("Select a Model:", [option["label"] for option in openai_options], index=0)
-
-            # Now you can access the selected model
             model = next((option["value"] for option in openai_options if option["label"] == selected_model), None)
 
         #st.write("Model ID: ", model)
 
-    # The rest of your app goes here
-    #st.write("This is where you would add your main content.")
-
-    if "conversation" not in st.session_state:
-        st.session_state["conversation"] = []
-    
     prompt = st.text_input("Question: ", placeholder="Enter your question here...")
     execute_button = st.button("Execute", type="primary")
 
     if prompt or execute_button:
-        st.session_state["conversation"].append({"role": "user", "content": prompt})
-        
-        # Container to hold the streaming response
-        #response_container = st.empty()
-        response = ""
-        
         with st.spinner('Retrieving Fields information...'):
             #Get Column Info
             columns, data_types, columns_and_types = get_column_info()
@@ -98,15 +72,7 @@ def main():
             print("Convertir el resultado JSON en texto natural")
             response = analyze_json_with_llm(prompt, json_result, framework, model)
 
-        # Append bot response to the conversation
-        st.session_state["conversation"].append({"role": "assistant", "content": response})
-    
-    # Display the conversation history
-    for message in st.session_state["conversation"]:
-        if message["role"] == "user":
-            st.markdown(f"**Question:** {message['content']}", unsafe_allow_html=False)
-        else:
-            st.markdown(f"**Answer:** {message['content']}", unsafe_allow_html=False)
+        st.markdown(f"**Answer:** {response}", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
