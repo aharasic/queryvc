@@ -14,14 +14,14 @@ headers = {'User-Agent': 'Mozilla/5.0'}
 search_body = {
     "field_ids": [
         "name", "categories", "location_identifiers", "short_description", "last_funding_at", 
-        "num_funding_rounds", "last_funding_type", "ipo_status", "country_code", "investor_names"
+        "num_funding_rounds", "last_funding_type", "ipo_status", "investor_names"
     ],
     "query": [
         {
             "type": "predicate",
-            "field_id": "country_code",
+            "field_id": "location_identifiers",
             "operator_id": "includes",
-            "values": ["CHL", "ARG"]  # Chile and Argentina
+            "values": ["Chile", "Argentina"]  # Replace country code with country names
         },
         {
             "type": "predicate",
@@ -49,13 +49,13 @@ if response.status_code == 200:
     df_filtered = df[
         ['properties.name', 'properties.categories', 'properties.location_identifiers', 'properties.short_description',
          'properties.last_funding_at', 'properties.num_funding_rounds', 
-         'properties.last_funding_type', 'properties.ipo_status', 'properties.country_code', 'properties.investor_names']
+         'properties.last_funding_type', 'properties.ipo_status', 'properties.investor_names']
     ]
 
     # Rename columns
     df_filtered.columns = [
         'StartupName', 'Industries', 'HeadquartersLocation', 'Description', 'LastFundingDate',
-        'NumberofFundingRounds', 'LastFundingType', 'IPOStatus', 'StartupCountry', 'Top5Investors'
+        'NumberofFundingRounds', 'LastFundingType', 'IPOStatus', 'Top5Investors'
     ]
 
     # Save to CSV
