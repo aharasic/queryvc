@@ -14,7 +14,7 @@ headers = {'User-Agent': 'Mozilla/5.0'}
 search_body = {
     "field_ids": [
         "name", "categories", "location_identifiers", "short_description", "last_funding_at", 
-        "num_funding_rounds", "last_funding_type", "ipo_status", "investor_names"
+        "num_funding_rounds", "last_funding_type"
     ],
     "query": [
         {
@@ -49,13 +49,13 @@ if response.status_code == 200:
     df_filtered = df[
         ['properties.name', 'properties.categories', 'properties.location_identifiers', 'properties.short_description',
          'properties.last_funding_at', 'properties.num_funding_rounds', 
-         'properties.last_funding_type', 'properties.ipo_status', 'properties.investor_names']
+         'properties.last_funding_type']
     ]
 
     # Rename columns
     df_filtered.columns = [
         'StartupName', 'Industries', 'HeadquartersLocation', 'Description', 'LastFundingDate',
-        'NumberofFundingRounds', 'LastFundingType', 'IPOStatus', 'Top5Investors'
+        'NumberofFundingRounds', 'LastFundingType'
     ]
 
     # Save to CSV
@@ -63,3 +63,4 @@ if response.status_code == 200:
     print("Data saved to filtered_startups.csv")
 else:
     print(f"Failed to fetch data: {response.status_code}, {response.text}")
+    
