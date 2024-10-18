@@ -2,7 +2,6 @@ import pandas as pd
 #from call_openai import query_openai
 from call_ollama import query_ollama
 from call_bedrock import query_bedrock
-iteration = 0
 
 def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, framework, model):
     print("Executing Function: convert_natural_to_sql from convert_to_sql.py")
@@ -55,10 +54,6 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     
     #sql_query = query_ollama(prompt, 'codellama')
     sql_query = query_bedrock(prompt, model)
-    
-    print(f"Run {iteration+1}")
-    print("SQL Query1: ", sql_query)
-    print("---Ended----")
 
     qa_prompt = f"""
     Review the following SQL Query. Make sure that the following is met:

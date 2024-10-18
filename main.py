@@ -5,13 +5,14 @@ from convert_to_sql import convert_natural_to_sql
 from get_column_info import get_column_info
 from query_database import execute_sql_query
 from json_to_text import analyze_json_with_llm
+import json
 
 load_dotenv()
 
 # Configuración de Streamlit
 def main():
-    st.set_page_config("Query VC", initial_sidebar_state="collapsed")
-    st.title("Query VC")
+    st.set_page_config("Query Crunchbase", initial_sidebar_state="collapsed")
+    st.title("Query Crunchbase")
             
     csv_file = "csv/crunchbase.csv"
 
@@ -55,8 +56,16 @@ def main():
 
         #st.write("Model ID: ", model)
 
-    prompt = st.text_input("Question: ", placeholder="Enter your question here...")
-    execute_button = st.button("Execute", type="primary")
+    with st.expander("What can I ask?"):
+        st.write('''
+            - Which countries raised the most money in 2024? Provide the top 10.
+            - Which startups raised the highest amount of money in 2023? List the top 10 along with detailed information about each.
+            - What is the growth in funds raised in Latin America during Q1 2024 compared to Q1 2023?
+            - List the newly funded Startups in Chile? (i.e. received funding in the last 3 months)
+        ''')
+    
+    prompt = st.text_input("", placeholder="Enter your question here...")
+    execute_button = st.button("Go", type="primary")
 
     if prompt or execute_button:
         with st.spinner('Retrieving Fields information...'):
@@ -71,8 +80,16 @@ def main():
         with st.spinner('Creating Report...'):
             print("Convertir el resultado JSON en texto natural")
             response = analyze_json_with_llm(prompt, json_result, framework, model)
-
-        st.markdown(f"**Answer:** {response}", unsafe_allow_html=True)
+            st.markdown(f"**Answer:** {response}", unsafe_allow_html=True)
+            with st.expander("Step-by-step:"):
+                st.markdown("1. The question is initially converted from natural language to SQL")
+                st.markdown(f"**Question:** {prompt}")
+                st.markdown(f"SQL Query:")
+                st.code(f"{sql_query}")
+                st.markdown("2. The query is sent to the database, which returns a response in JSON format.")
+                st.markdown("JSON:")
+                st.json(json_result)
+                st.markdown("3. Finally, the JSON is passed to the LLM to generate a response.")
 
 if __name__ == "__main__":
     main()

@@ -1,25 +1,22 @@
 import pandas as pd
 
 def get_column_info():
-    print("Executing Function: get_column_info from get_column_info.py")
-    df = pd.read_csv("csv/data.csv", nrows=5, header=None, sep=";")
+    print("Executing Function: get_column_info (hardcoded values)")
 
-    # Primera fila contiene los nombres de las columnas
-    columns = df.iloc[0].tolist()
-    print(columns)
+    # Hardcoded column names
+    columns = ['StartupName', 'Industries', 'HeadquartersLocation', 'Description', 
+               'LastFundingDate', 'LastFundingAmount', 'NumberofFundingRounds', 
+               'LastFundingType', 'StartupCountry', 'GeographyRegion', 'Top5Investors']
 
-    # Segunda fila contiene los tipos de datos
-    data_types = df.iloc[1].tolist()
-    print(data_types)
+    # Hardcoded data types
+    data_types = ['VARCHAR', 'VARCHAR', 'VARCHAR', 'TEXT', 
+                  'DATE', 'DECIMAL', 'INTEGER', 
+                  'VARCHAR', 'VARCHAR', 'VARCHAR', 'TEXT']
 
-    # Extraer las filas de la 2 a la 4
-    #examples = df.iloc[2:5].values.tolist()  # Convertir a lista para facilitar el manejo
-    #print(examples)
-
+    # Combine columns and data types
     columns_and_types = list(zip(columns, data_types))
-    print(columns_and_types)
 
-    # Imprimir los nombres de las columnas y los tipos de datos
+    # Print the hardcoded columns and data types
     print("Columnas:", columns_and_types)
     print("--------------------------------\n")
 

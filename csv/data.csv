@@ -1,2 +1,2 @@
-StartupName;Industries;HeadquartersLocation;Description;LastFundingDate;LastFundingAmount;NumberofFundingRounds;LastFundingType;IPOStatus;StartupCountry;Top5Investors
+StartupName;Industries;HeadquartersLocation;Description;LastFundingDate;LastFundingAmount;NumberofFundingRounds;LastFundingType;StartupCountry;GeographyRegion;Top5Investors
 VARCHAR;VARCHAR;VARCHAR;VARCHAR;DATE;BIGINT;INTEGER;VARCHAR;VARCHAR;VARCHAR;VARCHAR
