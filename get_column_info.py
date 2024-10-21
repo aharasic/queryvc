@@ -1,5 +1,3 @@
-import pandas as pd
-
 def get_column_info():
     print("Executing Function: get_column_info (hardcoded values)")
 

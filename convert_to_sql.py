@@ -70,6 +70,7 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     Return only a proper SQL Query, reviewed, and fixed for errors
     Delete format, comments or extra text
     Return Query only starting with SELECT
+    Never use the DATE function, instead use CAST like CAST(LastFundingDate AS DATE)
     """
     
     #qa_sql_query = query_ollama(qa_prompt, 'codellama')

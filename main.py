@@ -1,13 +1,8 @@
 import streamlit as st
-from dotenv import load_dotenv
-import os
 from convert_to_sql import convert_natural_to_sql
 from get_column_info import get_column_info
 from query_database import execute_sql_query
 from json_to_text import analyze_json_with_llm
-import json
-
-load_dotenv()
 
 # Configuración de Streamlit
 def main():
