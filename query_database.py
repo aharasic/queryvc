@@ -16,8 +16,8 @@ def execute_sql_query(sql_query, columns, data_types, csv_file):
         sql_query = sql_query[:-1] 
     #print(sql_query)
 
-    duckdb.execute(f"CREATE OR REPLACE TEMP TABLE temp_table ({column_definitions})")
-    duckdb.execute(f"INSERT INTO temp_table (SELECT * FROM data_df)")
+    duckdb.execute(f"CREATE OR REPLACE TEMP TABLE crunchbase_table ({column_definitions})")
+    duckdb.execute(f"INSERT INTO crunchbase_table (SELECT * FROM data_df)")
     duckdb.execute(f"CREATE OR REPLACE TEMP TABLE temp_query AS ({sql_query})")
 
     result = duckdb.execute("select * from temp_query").fetchall()
