@@ -40,7 +40,7 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     **Please convert this into a valid SQL statement, taking into account the column names, data types, and the example data provided.
     The Table Name is crunchbase_table with no quotes **
 
-    **When you need to use the operator LIKE, always use ILIKE**
+    **When you need to use the operator LIKE, always use ILIKE with percentage signs on both sides**
     
     **Only respond with the SQL command without any markdown ticks**
     
