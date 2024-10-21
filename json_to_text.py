@@ -17,6 +17,7 @@ def analyze_json_with_llm(natural_query, json_data, framework, model):
     - In the answer, augment the answer with the data responded in the json_data
     - Respond all in english
     - If you have country codes, convert them to the full country name without countrycodes: Example Chile
+    - In the datasource, all money amounts are in US Dollars
     - Bring the results formatted in Markdown
     </instructions>
     """

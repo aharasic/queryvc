@@ -75,6 +75,7 @@ def main():
         with st.spinner('Creating Report...'):
             print("Convertir el resultado JSON en texto natural")
             response = analyze_json_with_llm(prompt, json_result, framework, model)
+            response = response.replace("$", r"\$")
             st.markdown(f"**Answer:** {response}", unsafe_allow_html=True)
             with st.expander("Step-by-step:"):
                 st.markdown("1. The question is initially converted from natural language to SQL")
