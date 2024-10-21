@@ -14,7 +14,8 @@ def analyze_json_with_llm(natural_query, json_data, framework, model):
     - Say what the results mean when compared to the question asked
     - Dont talk about the query and don't talk about the structure of the query or the json
     - Only talk about how the data in the results respond related to the query
-    - In the answer, augment the answer with the data responded in the json_data
+    - When asked for VC investments, always consider all LastFundingType
+    - If asked for a list or a table, just print them out
     - Respond all in english
     - If you have country codes, convert them to the full country name without countrycodes: Example Chile
     - In the datasource, all money amounts are in US Dollars
@@ -25,3 +26,8 @@ def analyze_json_with_llm(natural_query, json_data, framework, model):
     query_results = call_llm(prompt, framework, model)
     
     return query_results
+
+
+
+#more prompts
+#In the answer, augment the answer with the data responded in the json_data
