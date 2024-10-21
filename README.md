@@ -1,4 +1,5 @@
-# Query VC
+# Query VC 
+# Last Update: 2024-10-20
 
 **Query VC** is a Streamlit-based application that allows users to interact with a Crunchbase Startups Investments dataset. Users can ask questions in natural language, which are then converted into SQL queries to retrieve relevant data from the dataset. The results are processed and returned in a readable format.
 
