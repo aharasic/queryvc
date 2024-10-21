@@ -50,7 +50,8 @@ def main():
             model = next((option["value"] for option in openai_options if option["label"] == selected_model), None)
 
         #st.write("Model ID: ", model)
-
+    st.info("This App is meant as a Proof-of-Concept. The dataset is not fully cleaned so don't use it to make business decisions.")
+    
     with st.expander("What can I ask?"):
         st.write('''
             - Which countries raised the most money in 2024? Provide the top 10.
