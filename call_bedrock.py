@@ -12,13 +12,16 @@ bedrock_client = boto3.client(
     aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
 )
 
+inference_profile_arn = "arn:aws:bedrock:us-east-2:205930639716:inference-profile/us.anthropic.claude-3-5-sonnet-20240620-v1:0"
+
 #models
 #model="anthropic.claude-3-sonnet-20240229-v1:0"
-##model="anthropic.claude-3-5-sonnet-20240620-v1:0"
-##model="anthropic.claude-3-haiku-20240307-v1:0"
+#model="anthropic.claude-3-5-sonnet-20240620-v1:0"
+#model="anthropic.claude-3-haiku-20240307-v1:0"
 
 def query_claude(prompt, model):
     print("\nExecuting Call_Claude Model: ", model)
+    model="us.anthropic.claude-3-5-sonnet-20240620-v1:0"
     
     # Create the messages payload as expected by the Messages API
     messages = [

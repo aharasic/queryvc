@@ -44,6 +44,8 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     
     **Only respond with the SQL command without any markdown ticks**
     
+    *If you need to limit the number of records, always use LIMIT never use TOP**
+    
     **The LastFundingDate is a DATE field, so make sure to query with DATE types of conditions, never use LIKE
 
     **If asked for data about a specific country, then query for StartupCountry using 2-letter country code**
@@ -52,7 +54,7 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     
     """
     
-    #sql_query = query_ollama(prompt, 'codellama')
+    #sql_query = query_ollama(prompt, model)
     sql_query = query_bedrock(prompt, model)
 
     qa_prompt = f"""
@@ -73,7 +75,7 @@ def convert_natural_to_sql(natural_query, columns, columns_and_types, csv_file, 
     Never use the DATE function, instead use CAST like CAST(LastFundingDate AS DATE)
     """
     
-    #qa_sql_query = query_ollama(qa_prompt, 'codellama')
+    #qa_sql_query = query_ollama(qa_prompt, model)
     qa_sql_query = query_bedrock(qa_prompt, model)
     print("SQL Query2: ", qa_sql_query)
     
